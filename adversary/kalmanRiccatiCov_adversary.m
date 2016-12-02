@@ -13,7 +13,7 @@ function cov_update=kalmanRiccatiCov_adversary(xposition,yposition,cov,law,c1,c2
    end
 
 w=norm(xposition-yposition);
-cov = cov-cov*(cov+diag([w,w]))^-1*cov;
+cov = c*cov*c'-c*cov*(cov+diag([w,w]))^-1*cov*c';
 cov_update=cov;
 
 end

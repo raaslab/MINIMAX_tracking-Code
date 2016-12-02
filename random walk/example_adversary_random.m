@@ -1,7 +1,7 @@
 clear
 X_Position=[-2;-2];
 Y_Position=[1;1];
-Cov=1.2*eye(2);
+Cov=eye(2);
 
 PositionX=X_Position;
 PositionY=Y_Position;
@@ -11,7 +11,7 @@ qx=PositionY(1);
 qy=PositionY(2);
 for i=2:10
    
-        [X_Position,Y_Position,Cov] = online_adversary(X_Position,Y_Position,Cov)
+        [X_Position,Y_Position,Cov] = online_adversary_random(X_Position,Y_Position,Cov)
 
         PositionX(:,i)=X_Position;
         PositionY(:,i)=Y_Position;

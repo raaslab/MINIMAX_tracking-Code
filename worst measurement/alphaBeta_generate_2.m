@@ -3,32 +3,9 @@ function  [nodenext,GraphUpadte,BestValue,done]=alphaBeta_generate_2(Count,Graph
      done=0;
      GraphUpadte=GraphName;
 
-    if GraphUpadte.Nodes.Generation(Count) == End_Generation
-                        parent=Count;
-                        
-                       GraphUpadte=addedge(GraphUpadte,parent,Count+1); 
-                              %message('daozhele');
-                       GraphUpadte.Nodes.Children(parent)= GraphUpadte.Nodes.Children(parent)+1;
-                       GraphUpadte.Nodes.Parent(Count+1)=parent;
-                       GraphUpadte.Nodes.Generation(Count+1)= GraphUpadte.Nodes.Generation(parent)+1;
-                       GraphUpadte.Nodes.Law(Count+1)=~GraphUpadte.Nodes.Law(parent);
-                       GraphUpadte.Nodes.rid(Count+1)=0;
-                       GraphUpadte.Nodes.Finish(Count+1)=1;
-                        
-                        GraphUpadte.Nodes.Position(Count+1) = GraphUpadte.Nodes.Position(parent);
-               
-                        GraphUpadte.Nodes.Y(Count+1) = {UpdateY(table2array(GraphUpadte.Nodes.Position(Count+1)),y(:,GraphUpadte.Nodes.Children(parent)),table2array(GraphUpadte.Nodes.Cov(parent)))};
-                        GraphUpadte.Nodes.Cov(Count+1) = {kalmanRiccatiCov(table2array(GraphUpadte.Nodes.Position(parent)),table2array(GraphUpadte.Nodes.Y(parent)),table2array(GraphUpadte.Nodes.Cov(parent)))};         
-               
-                        GraphUpadte.Nodes.trace(Count+1) = trace(table2array(GraphUpadte.Nodes.Cov(Count+1)));
-                
-                        GraphUpadte.Nodes.alpha(Count+1)=GraphUpadte.Nodes.alpha(parent);
-                        GraphUpadte.Nodes.beta(Count+1) = GraphUpadte.Nodes.beta(parent);
-                        GraphUpadte.Nodes.BestValue(Count+1) = GraphUpadte.Nodes.BestValue(parent);
-
-                        nodenext= Count+1;
+    
         
-    elseif GraphUpadte.Nodes.Finish(Count)==0 %The node is not finish, Countinue genearte the next part of the node;
+    if GraphUpadte.Nodes.Finish(Count)==0 %The node is not finish, Countinue genearte the next part of the node;
         
          parent=Count;
          
